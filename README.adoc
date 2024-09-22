@@ -40,8 +40,9 @@ cp .env.default .env <.>
 [source,script]
 ----
 MASTER_COUNT=1
-WORKER_COUNT=2
+WORKER_COUNT=2  <.>
 ----
+<.> WORKER_COUNT can be zero, since master can act as a worker.
 
 === change k8s version
 

@@ -1,0 +1,19 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: InitConfiguration
+bootstrapTokens:
+- ttl: 100000h0m0s
+localAPIEndpoint:
+  advertiseAddress: ${K8S_APISERVER_ADVERTISE_ADDRESS}
+
+---
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+kubernetesVersion: ${K8S_VERSION}
+controlPlaneEndpoint: ${K8S_COTNROL_PLANE_ENDPOINT}
+networking:
+  podSubnet: ${K8S_POD_NETWORK_CIDR}
+imageRepository: ${K8S_REGISTRY_GOOGLE}
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+mode: "ipvs"

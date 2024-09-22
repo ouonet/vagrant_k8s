@@ -1,0 +1,26 @@
+global_defs {
+    router_id ${KA_HOSTNAME}
+}
+
+vrrp_instance K8S-VIP {
+    state ${KA_STATE}
+    ${KA_PREEMPT}
+    
+    interface ${K8S_INTERFACE}
+    use_vmac vrrp1
+
+    virtual_router_id 18
+    garp_master_refresh 10
+    garp_master_refresh_repeat 2
+    priority ${KA_PRIORITY}
+    advert_int 1
+
+    authentication {
+        auth_type PASS
+        auth_pass 123456
+    }
+
+    virtual_ipaddress {
+         ${K8S_COTNROL_PLANE_ENDPOINT_IP}/24
+    }
+}

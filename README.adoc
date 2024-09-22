@@ -1,0 +1,69 @@
+= Rappidly create k8s cluster on vagrant
+
+This Vagrantfile is aiming to rappidly to create k8s cluster on vagrant. features including:
+
+. able to config all mirrors for docker hub, google containers and apt.
+. able to config private registry
+. able to config master count and worker count
+. using ipvs instead of iptables
+. using nginx for api load-balancer
+. masters act as a role of worker
+. supporting kubernetes version: v1.29
+. using debian 
+. using containerd 
+
+== prequistion
+
+. virtualbox
+
+== usage
+
+[source,bash]
+```
+vagrant up
+```
+
+Defaultly, 1 master and 2 workers are created . Kubernetes config is located at .tmp folder.
+
+== customize
+
+If want to customiz, copy .env.default to .env and change it.
+
+[source,bash]
+```
+cp .env.default .env
+```
+
+=== change master and worker count
+
+[source,script]
+----
+MASTER_COUNT=1
+WORKER_COUNT=2
+----
+
+=== change k8s version
+
+[source,script]
+----
+K8S_VERSION=v1.30.3
+K8S_PAUSE_VERSION=3.9
+K8S_APT_MIRROR_K8S=https://mirrors.tuna.tsinghua.edu.cn/kubernetes/core:/stable:/v1.30/deb/
+----
+
+=== config private registry
+
+[source,script]
+----
+K8S_REGISTRY_PRIVATE=192.168.11.1:8483  <.>
+K8S_REGISTRY_PRIVATE_CERT_FILE=  
+----
+<.> do not specify protocol for registry URL, if cert file is provided , https will using
+
+=== conig image gc 
+
+[source,script]
+----
+K8S_IMAGE_MINIMUM_GC_AGE=
+K8S_IMAGE_MAXIMUM_GC_AGE=
+----

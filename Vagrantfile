@@ -7,11 +7,8 @@ def load_env(file)
   end
 end
 
-if File.exist?(".env")
-  load_env(".env")
-else
-  load_env(".env.default")
-end
+load_env(".env.default")
+load_env(".env")
 
 box_name = ENV["BOX_NAME"] || "generic/debian12"
 vm_ip_prefix = ENV["VM_IP_PREFIX"] || "192.168.56"

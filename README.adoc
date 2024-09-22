@@ -1,6 +1,6 @@
-= Rappidly create k8s cluster on vagrant
+= Rapidly create k8s cluster on vagrant
 
-This Vagrantfile is aiming to rappidly to create k8s cluster on vagrant. features including:
+This Vagrantfile is aiming to rapidly to create k8s cluster on vagrant. features:
 
 . able to config all mirrors for docker hub, google containers and apt.
 . able to config private registry
@@ -12,7 +12,7 @@ This Vagrantfile is aiming to rappidly to create k8s cluster on vagrant. feature
 . using debian 
 . using containerd 
 
-== prequistion
+== prerequisite
 
 . virtualbox
 
@@ -31,8 +31,9 @@ If want to customiz, copy .env.default to .env and change it.
 
 [source,bash]
 ```
-cp .env.default .env
+cp .env.default .env <.>
 ```
+<.> .env file can contain parial config, it will be merged with default config.
 
 === change master and worker count
 

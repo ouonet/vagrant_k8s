@@ -2,10 +2,11 @@
 this_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 env_file="$this_dir/../.env"
 env_default_file="$this_dir/../.env.default"
+if [ -f $env_default_file ]; then
+  source $env_default_file
+fi
 if [ -f "$env_file" ]; then
   source "$env_file"
-else 
-  source "$env_default_file" 
 fi
 
 function logCurrentFunction() {

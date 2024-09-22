@@ -23,7 +23,24 @@ This Vagrantfile is aiming to rapidly to create k8s cluster on vagrant. features
 vagrant up
 ```
 
-Defaultly, 1 master and 2 workers are created . Kubernetes config is located at .tmp folder.
+Defaultly, 1 master and 2 workers are created. kubectl config is located at .tmp folder. You can link it to ./kube/config
+
+[source,bash]
+----
+[ -f ~/.kube/config ] && mv ~/.kube/config ~/.kube/config.backup.$(date +%s)
+ln -s "$(pwd)/.tmp/config" ~/.kube/config
+----
+
+after setup , you can check whether k8s working
+[source,bash]
+----
+$ kubectl get nodes
+NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   8m54s
+----
+
+
+
 
 == customize
 

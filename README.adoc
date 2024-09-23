@@ -34,9 +34,9 @@ $ ln -s "$(pwd)/.tmp/config" ~/.kube/config
 after setup , you can check whether k8s working
 [source,bash]
 ----
-$ kubectl get nodes
+$ kubectl get all
 NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   8m54s
+service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   15h
 ----
 
 

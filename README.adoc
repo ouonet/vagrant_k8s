@@ -19,16 +19,16 @@ This Vagrantfile is aiming to rapidly to create k8s cluster on vagrant. features
 == usage
 
 [source,bash]
-```
-vagrant up
-```
+----
+$ vagrant up
+----
 
 Defaultly, 1 master and 2 workers are created. kubectl config is located at .tmp folder. You can link it to ./kube/config
 
 [source,bash]
 ----
-[ -f ~/.kube/config ] && mv ~/.kube/config ~/.kube/config.backup.$(date +%s)
-ln -s "$(pwd)/.tmp/config" ~/.kube/config
+$ [ -f ~/.kube/config ] && mv ~/.kube/config ~/.kube/config.backup.$(date +%s)
+$ ln -s "$(pwd)/.tmp/config" ~/.kube/config
 ----
 
 after setup , you can check whether k8s working
@@ -47,9 +47,9 @@ service/kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   8m54s
 If want to customiz, copy .env.default to .env and change it.
 
 [source,bash]
-```
-cp .env.default .env <.>
-```
+----
+$ cp .env.default .env <.>
+----
 <.> .env file can contain parial config, it will be merged with default config.
 
 === change master and worker count

@@ -78,7 +78,7 @@ K8S_APT_MIRROR_K8S=https://mirrors.tuna.tsinghua.edu.cn/kubernetes/core:/stable:
 K8S_REGISTRY_PRIVATE=192.168.11.1:8483  <.>
 K8S_REGISTRY_PRIVATE_CERT_FILE=  
 ----
-<.> do not specify protocol for registry URL, if cert file is provided , https will using
+<.> do not specify protocol for registry URL, if cert file is provided , https will be used.
 
 === conig image gc 
 

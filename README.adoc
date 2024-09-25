@@ -7,6 +7,7 @@ This Vagrantfile is aiming to rapidly to create k8s cluster on vagrant. features
 . able to config master count and worker count
 . using ipvs instead of iptables
 . using nginx for api load-balancer
+. nfs-common are installed on all nodes
 . masters act as a role of worker
 . supporting kubernetes version: v1.29
 . using debian 

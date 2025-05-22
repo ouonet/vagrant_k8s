@@ -2,8 +2,8 @@
 this_dir=$(dirname "$(realpath "${BASH_SOURCE[0]}")")
 env_file="$this_dir/../.env"
 env_default_file="$this_dir/../.env.default"
-if [ -f $env_default_file ]; then
-  source $env_default_file
+if [ -f "$env_default_file" ]; then
+  source "$env_default_file"
 fi
 if [ -f "$env_file" ]; then
   source "$env_file"
@@ -45,7 +45,7 @@ function setRootPassword() {
 function closeSwap() {
   echo "########## close swap......."
   sudo swapoff -a
-  sudo sed -ri 's/.*swap.*/#&/' /etc/fstab
+  sudo sed -ri 's/^[^#]*swap.*/#&/' /etc/fstab
 }
 
 function configSysctl() {
@@ -136,7 +136,7 @@ function installAllPackages() {
 
 function configContainerdDefaults() {
   echo "########## config containerd defaults......."
-  K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.aliyuncs.com/google_containers"}
+  K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.k8s.io"}
   K8S_PAUSE_VERSION=${K8S_PAUSE_VERSION:-"3.9"}
   # containerd config ,
   # 1. enable cri plugin 
@@ -254,7 +254,7 @@ EOF
 #     echo "no k8s version, exit"
 #     exit 1
 #   fi
-#   K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.aliyuncs.com/google_containers"}
+#   K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.k8s.io"}
 #   K8S_POD_NETWORK_CIDR=${K8S_POD_NETWORK_CIDR:-"10.244.0.0/16"}
 #   sudo kubeadm init \
 #     --apiserver-advertise-address="$(getIp)" \
@@ -270,7 +270,7 @@ function kubeadmInitSinaleMaster() {
     exit 1
   fi
   
-  K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.aliyuncs.com/google_containers"}
+  K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.k8s.io"}
   K8S_POD_NETWORK_CIDR=${K8S_POD_NETWORK_CIDR:-"10.244.0.0/16"}
   K8S_APISERVER_ADVERTISE_ADDRESS=$(getIp)
   K8S_COTNROL_PLANE_ENDPOINT="${K8S_APISERVER_ADVERTISE_ADDRESS}:6443"
@@ -296,7 +296,7 @@ function kubeadmInitFirstMaster() {
     echo "no k8s version, exit"
     exit 1
   fi
-  K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.aliyuncs.com/google_containers"}
+  K8S_REGISTRY_GOOGLE=${K8S_REGISTRY_GOOGLE:-"registry.k8s.io"}
   K8S_POD_NETWORK_CIDR=${K8S_POD_NETWORK_CIDR:-"10.244.0.0/16"}
   K8S_APISERVER_ADVERTISE_ADDRESS=$(getIp)
 
